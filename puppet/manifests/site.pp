@@ -9,12 +9,12 @@ define append_if_no_such_line($file, $line, $refreshonly = 'false') {
 }
 
 node default {
-  include sudo
+#  include sudo
 
-  sudo::conf { 'wheel':
-    priority  => 10,
-    content   => "%wheel    ALL=(ALL)   NOPASSWD: ALL\n",
-  }
+#  sudo::conf { 'wheel':
+#    priority  => 10,
+#    content   => "%wheel    ALL=(ALL)   NOPASSWD: ALL\n",
+#  }
 
   class { timezone:
     zone => "Europe/Moscow",
@@ -53,22 +53,20 @@ node default {
 node 'vm-cluster-node1.localdomain' inherits default {
   class { 'cloudera':
     cm_server_host => 'vm-cluster-node1.localdomain',
-    use_parcels    => true,
-  } ->
-  class { 'cloudera::cm::server': }
+    install_cmserver => true,
+    cdh_version => '5.2.1',
+  }
 }
 
 node 'vm-cluster-node2.localdomain' inherits default {
   class { 'cloudera':
     cm_server_host => 'vm-cluster-node1.localdomain',
-    use_parcels    => true,
   }
 }
 
 node 'vm-cluster-node3.localdomain' inherits default {
   class { 'cloudera':
     cm_server_host => 'vm-cluster-node1.localdomain',
-    use_parcels    => true,
   }
 }
 
