@@ -1,5 +1,5 @@
 
-vm_mem = "2048"
+vm_mem = "4096"
 
 $host_script = <<SCRIPT
 #!/bin/bash
