@@ -1,5 +1,6 @@
 
 vm_mem = "4096"
+cpus = 2
 
 $host_script = <<SCRIPT
 #!/bin/bash
@@ -37,7 +38,7 @@ Vagrant.configure($API_VERSION) do |config|
     master.vm.box = "puppetlabs/centos-6.5-64-puppet"
     master.vm.provider :virtualbox do |v|
       v.name = "vm-cluster-node1"
-      v.customize ["modifyvm", :id, "--memory", vm_mem]
+      v.customize ["modifyvm", :id, "--memory", vm_mem, "--cpus", cpus]
     end
     master.vm.hostname = "vm-cluster-node1.localdomain"
     master.vm.network :private_network, ip: "10.211.55.101"
@@ -47,7 +48,7 @@ Vagrant.configure($API_VERSION) do |config|
     slave1.vm.box = "puppetlabs/centos-6.5-64-puppet"
     slave1.vm.provider :virtualbox do |v|
       v.name = "vm-cluster-node2"
-      v.customize ["modifyvm", :id, "--memory", vm_mem]
+      v.customize ["modifyvm", :id, "--memory", vm_mem, "--cpus", cpus]
     end
     slave1.vm.hostname = "vm-cluster-node2.localdomain"
     slave1.vm.network :private_network, ip: "10.211.55.102"
@@ -57,7 +58,7 @@ Vagrant.configure($API_VERSION) do |config|
     slave2.vm.box = "puppetlabs/centos-6.5-64-puppet"
     slave2.vm.provider :virtualbox do |v|
       v.name = "vm-cluster-node3"
-      v.customize ["modifyvm", :id, "--memory", vm_mem]
+      v.customize ["modifyvm", :id, "--memory", vm_mem, "--cpus", cpus]
     end
     slave2.vm.hostname = "vm-cluster-node3.localdomain"
     slave2.vm.network :private_network, ip: "10.211.55.103"
