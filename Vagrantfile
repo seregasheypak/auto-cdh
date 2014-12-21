@@ -21,13 +21,6 @@ SCRIPT
 $API_VERSION = "2"
 Vagrant.configure($API_VERSION) do |config|
 
-
-  # config.vm.provision :shell do |shell|
-  #   shell.inline = "mkdir -p /etc/puppet/modules;
-  #                 puppet module install puppetlabs/stdlib;
-  #                 puppet module install razorsedge/cloudera;"
-  # end
-
   config.vm.provision :shell, :inline => $host_script
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = 'puppet/manifests'
