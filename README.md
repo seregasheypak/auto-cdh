@@ -43,5 +43,8 @@ http://archive-primary.cloudera.com/cm5/
 #repo for CDH5 parcels
 http://archive-primary.cloudera.com/cdh5/parcels/
 
+#some tool to run for cloudera cluster provision
+https://github.com/gdgt/cmapi
+
 
 
