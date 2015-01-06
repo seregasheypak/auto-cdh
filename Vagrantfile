@@ -1,5 +1,5 @@
 
-vm_mem = "4096"
+vm_mem = "8192"
 cpus = 2
 
 $host_script = <<SCRIPT
