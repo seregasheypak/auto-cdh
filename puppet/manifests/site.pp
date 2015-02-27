@@ -1,4 +1,4 @@
-$cm_version = '4.8.0'
+$cm_version = '5.3.1'
 
 define append_if_no_such_line($file, $line, $refreshonly = 'false') {
   exec { "/bin/echo '$line' >> '$file'":
@@ -54,7 +54,7 @@ node 'vm-cluster-node1.localdomain' inherits default {
   class { 'cloudera':
     cm_server_host => 'vm-cluster-node1.localdomain',
     install_cmserver => true,
-    cdh_version => '5.2.1',
+    cdh_version => $cm_version,
   }
 }
 
