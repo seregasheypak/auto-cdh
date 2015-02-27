@@ -35,7 +35,7 @@ Vagrant.configure($API_VERSION) do |config|
   end
 
   config.vm.define :master do |master|
-    master.vm.box = "puppetlabs/centos-6.5-64-puppet"
+    master.vm.box = "puppetlabs/centos-6.6-64-puppet"
     master.vm.provider :virtualbox do |v|
       v.name = "vm-cluster-node1"
       v.customize ["modifyvm", :id, "--memory", vm_mem, "--cpus", cpus]
