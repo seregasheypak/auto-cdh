@@ -23,6 +23,7 @@ vagrant box add centos-64-x64-vbox4210-nocm.box http://puppet-vagrant-boxes.pupp
 
 # puppetlabs/centos-6.5-64-puppet
 vagrant box add https://atlas.hashicorp.com/puppetlabs/boxes/centos-6.5-64-puppet --insecure
+vagrant box add https://atlas.hashicorp.com/puppetlabs/boxes/centos-6.6-64-puppet --insecure
 
 # run vagrant
 vagrant up
