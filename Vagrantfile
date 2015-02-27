@@ -45,7 +45,7 @@ Vagrant.configure($API_VERSION) do |config|
   end
 
   config.vm.define :slave1 do |slave1|
-    slave1.vm.box = "puppetlabs/centos-6.5-64-puppet"
+    slave1.vm.box = "puppetlabs/centos-6.6-64-puppet"
     slave1.vm.provider :virtualbox do |v|
       v.name = "vm-cluster-node2"
       v.customize ["modifyvm", :id, "--memory", vm_mem, "--cpus", cpus]
@@ -55,7 +55,7 @@ Vagrant.configure($API_VERSION) do |config|
   end
 
   config.vm.define :slave2 do |slave2|
-    slave2.vm.box = "puppetlabs/centos-6.5-64-puppet"
+    slave2.vm.box = "puppetlabs/centos-6.6-64-puppet"
     slave2.vm.provider :virtualbox do |v|
       v.name = "vm-cluster-node3"
       v.customize ["modifyvm", :id, "--memory", vm_mem, "--cpus", cpus]
