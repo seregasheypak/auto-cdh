@@ -77,13 +77,6 @@ node 'vm-cluster-node3.localdomain' inherits default {
   class { '::mysql::server':
     root_password           => 'root',
     override_options        => $override_options,
-
-    databases => {
-      'cdrdb' => {
-        ensure  => 'present',
-        charset => 'utf8',
-      },
-    }
   }
 }
 
