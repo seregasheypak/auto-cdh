@@ -5,9 +5,10 @@ cpus = 2
 $host_script = <<SCRIPT
 #!/bin/bash
 
-mkdir -p /etc/puppet/modules;
-puppet module install puppetlabs/stdlib;
-puppet module install razorsedge/cloudera;
+mkdir -p /etc/puppet/modules
+puppet module install puppetlabs/stdlib
+puppet module install razorsedge/cloudera
+puppet module install puppetlabs-mysql
 
 cat > /etc/hosts <<EOF
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
