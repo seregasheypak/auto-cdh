@@ -1,5 +1,7 @@
 $cm_version = '5.3.2'
 
+import "devops.pp"
+
 define append_if_no_such_line($file, $line, $refreshonly = 'false') {
   exec { "/bin/echo '$line' >> '$file'":
     unless      => "/bin/grep -Fxqe '$line' '$file'",
@@ -9,6 +11,8 @@ define append_if_no_such_line($file, $line, $refreshonly = 'false') {
 }
 
 node default {
+
+  include devops_user
 
   class { timezone:
     zone => "Europe/Moscow",
@@ -48,7 +52,7 @@ node 'vm-cluster-node1.localdomain' inherits default {
   class { 'cloudera':
     cm_server_host => 'vm-cluster-node1.localdomain',
     install_cmserver => true,
-    cdh_version => '5.2.1',
+    cdh_version => $cm_version,
   }
 }
 
@@ -58,9 +62,28 @@ node 'vm-cluster-node2.localdomain' inherits default {
   }
 }
 
+$override_options = {
+  'mysqld' => {
+    'bind-address'    => '0.0.0.0'
+  }
+}
+
+
 node 'vm-cluster-node3.localdomain' inherits default {
   class { 'cloudera':
     cm_server_host => 'vm-cluster-node1.localdomain',
+  }
+
+  class { '::mysql::server':
+    root_password           => 'root',
+    override_options        => $override_options,
+
+    databases => {
+      'cdrdb' => {
+        ensure  => 'present',
+        charset => 'utf8',
+      },
+    }
   }
 }
 
