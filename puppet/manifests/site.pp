@@ -13,6 +13,7 @@ define append_if_no_such_line($file, $line, $refreshonly = 'false') {
 node default {
 
   include devops_user
+  include sudo
 
   class { timezone:
     zone => "Europe/Moscow",
@@ -44,6 +45,11 @@ node default {
   append_if_no_such_line { sysctl_default_ipv6:
     file => "/etc/sysctl.conf",
     line => "net.ipv6.conf.default.disable_ipv6 = 1"
+  }
+
+  sudo::conf { 'wheel':
+    priority  => 10,
+    content   => "%wheel    ALL=(ALL)   NOPASSWD: ALL\n",
   }
 
 }
